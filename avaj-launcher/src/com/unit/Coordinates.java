@@ -5,7 +5,6 @@ public class Coordinates {
 
 	private int longitude;
 	private int latitude;
-
 	private int height;
 
 	public int getLongitude() { return longitude; }
