@@ -1,11 +1,17 @@
 
 package com.unit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tower {
 
 	private List<Flyable> observers;
+
+	public Tower() {
+
+		observers = new ArrayList<>();
+	}
 
 	public void register(Flyable flyable) {
 

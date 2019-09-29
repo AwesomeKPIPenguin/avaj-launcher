@@ -9,7 +9,8 @@ import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+		throws Exception {
 
 		WeatherTower wt;
 		Flyable flyable;
@@ -17,12 +18,12 @@ public class Main {
 		String line;
 		String[] params;
 		int simulationCount;
+		boolean isMD5;
 
-		if (args.length != 1) {
+		isMD5 = args[0].equals("-md5");
 
-			System.out.println("Number of parameters should be equal to 1");
-			return;
-		}
+		if (args.length != ((isMD5) ? 2 : 1))
+			throw new WrongNumberOfParametersException();
 
 		wt = new WeatherTower();
 		simulationCount = 0;

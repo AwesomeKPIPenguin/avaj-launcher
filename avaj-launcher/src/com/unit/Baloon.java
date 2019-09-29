@@ -15,13 +15,13 @@ public class Baloon extends Aircraft implements Flyable {
 
 		String weather = WeatherTower.getWeather(coordinates);
 
-		System.out.println(getLogName() + ": ");
+		System.out.print(getLogName() + ": ");
 		switch (weather) {
 
-			case "RAIN":	System.out.println(getLogName() + ": " + reactOnRain());	break;
-			case "FOG":		System.out.println(getLogName() + ": " + reactOnFog());		break;
-			case "SUN":		System.out.println(getLogName() + ": " + reactOnSun());		break;
-			case "SNOW":	System.out.println(getLogName() + ": " + reactOnSnow());	break;
+			case "RAIN":	System.out.println(reactOnRain());	break;
+			case "FOG":		System.out.println(reactOnFog());	break;
+			case "SUN":		System.out.println(reactOnSun());	break;
+			case "SNOW":	System.out.println(reactOnSnow());	break;
 		}
 	}
 
@@ -57,6 +57,7 @@ public class Baloon extends Aircraft implements Flyable {
 	@Override
 	public void registerTower(WeatherTower WeatherTower) {
 
+		WeatherTower.register(this);
 		this.WeatherTower = WeatherTower;
 		System.out.println("Tower says: " + getLogName() + " registered to weather tower.");
 	}
