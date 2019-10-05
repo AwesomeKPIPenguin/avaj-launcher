@@ -1,5 +1,5 @@
 
-package com.unit;
+package com.unit.exceptions;
 
 public class WrongNumberOfParametersException extends Exception {
 

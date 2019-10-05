@@ -1,11 +1,11 @@
 
 package com.unit;
 
+import com.unit.exceptions.WrongNumberOfParametersException;
 import com.unit.exceptions.WrongSimulationFileFormatException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Main {
 

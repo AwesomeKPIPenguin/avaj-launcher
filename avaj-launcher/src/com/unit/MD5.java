@@ -1,6 +1,8 @@
 
 package com.unit;
 
+import com.unit.exceptions.UnknownValueOfMD5Exception;
+
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
