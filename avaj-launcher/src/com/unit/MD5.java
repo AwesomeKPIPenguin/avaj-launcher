@@ -3,13 +3,14 @@ package com.unit;
 
 import com.unit.exceptions.UnknownValueOfMD5Exception;
 
-import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class MD5 {
+
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
     private static MessageDigest md;
     private static Dictionary<String, String> dictionary;
@@ -25,6 +26,18 @@ public class MD5 {
         try { GenerateDictionary(); } catch (NoSuchAlgorithmException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static String bytesToHex(byte[] bytes) {
+
+        char[] hexChars = new char[bytes.length * 2];
+
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
     }
 
     private static void GenerateDictionary()
@@ -44,20 +57,11 @@ public class MD5 {
         for (String name : names) {
 
             md.update(name.getBytes());
-            dict.put(
-                DatatypeConverter.printHexBinary(md.digest()).toUpperCase(),
-                name
-            );
+            dict.put(bytesToHex(md.digest()), name);
             md.update(name.toLowerCase().getBytes());
-            dict.put(
-                DatatypeConverter.printHexBinary(md.digest()).toUpperCase(),
-                name.toLowerCase()
-            );
+            dict.put(bytesToHex(md.digest()), name.toLowerCase());
             md.update(name.toUpperCase().getBytes());
-            dict.put(
-                DatatypeConverter.printHexBinary(md.digest()).toUpperCase(),
-                name.toUpperCase()
-            );
+            dict.put(bytesToHex(md.digest()), name.toUpperCase());
         }
     }
 
@@ -71,10 +75,7 @@ public class MD5 {
 
             numberString = String.valueOf(i);
             md.update(numberString.getBytes());
-            dict.put(
-                DatatypeConverter.printHexBinary(md.digest()).toUpperCase(),
-                numberString
-            );
+            dict.put(bytesToHex(md.digest()), numberString);
         }
     }
 
@@ -86,7 +87,8 @@ public class MD5 {
         try { value = dictionary.get(hash); } catch (Exception e) {
             throw new UnknownValueOfMD5Exception();
         }
-
+        if (value == null)
+            throw new UnknownValueOfMD5Exception();
         return value;
     }
 }

@@ -26,5 +26,9 @@ public class Aircraft {
 		return idCounter++;
 	}
 
+	protected void landMsg() {
 
+		System.out.println(String.format("LANDING: %s (%d) landed at %d LO, %d LA",
+			name, id, coordinates.getLongitude(), coordinates.getLatitude()));
+	}
 }

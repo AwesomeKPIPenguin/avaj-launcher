@@ -1,0 +1,4 @@
+20
+Baloon BA 1 2 3
+JetPlane JP 23 1056 32
+Helicopter HE 654 33 20

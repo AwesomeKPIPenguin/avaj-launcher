@@ -23,6 +23,11 @@ public class Baloon extends Aircraft implements Flyable {
 			case "SUN":		System.out.println(reactOnSun());	break;
 			case "SNOW":	System.out.println(reactOnSnow());	break;
 		}
+		if (coordinates.getHeight() <= 0) {
+			coordinates.setHeight(0);
+			landMsg();
+			WeatherTower.unregister(this);
+		}
 	}
 
 	@Override
